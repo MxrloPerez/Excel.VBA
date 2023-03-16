@@ -1,4 +1,4 @@
-Function extraerCaracteresNoCoincidentes(cadena1 As String, cadena2 As String) As String
+Function extraerCaracteres(cadena1 As String, cadena2 As String) As String
     Dim resultado As String
     Dim i As Integer
     
@@ -16,5 +16,5 @@ Function extraerCaracteresNoCoincidentes(cadena1 As String, cadena2 As String) A
         End If
     Next i
     
-    extraerCaracteresNoCoincidentes = resultado
+    extraerCaracteres = resultado
 End Function
