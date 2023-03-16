@@ -1,0 +1,29 @@
+Function Coincide(palabra1 As String, palabra2 As String) As String
+    Dim palabras() As String
+    Dim i As Integer
+    Dim j As Integer
+    Dim k As Integer
+    Dim coinciden As Boolean
+    
+    palabras = Split(palabra1, " ")
+    Coincide = ""
+    
+    For i = 0 To UBound(palabras)
+        coinciden = False
+        
+        For j = 1 To Len(palabra2) - Len(palabras(i)) + 1
+            If Mid(palabra2, j, Len(palabras(i))) = palabras(i) Then
+                coinciden = True
+                Exit For
+            End If
+        Next j
+        
+        If coinciden Then
+            If Coincide = "" Then
+                Coincide = palabras(i)
+            Else
+                Coincide = Coincide & " " & palabras(i)
+            End If
+        End If
+    Next i
+End Function
