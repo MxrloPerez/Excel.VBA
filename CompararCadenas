@@ -1,0 +1,21 @@
+Function CompararCadenas(cadena1 As String, cadena2 As String) As Double
+    Dim palabras1() As String
+    Dim palabras2() As String
+    Dim i As Integer
+    Dim j As Integer
+    Dim contador As Integer
+    
+    palabras1 = Split(cadena1, " ")
+    palabras2 = Split(cadena2, " ")
+    
+    For i = LBound(palabras1) To UBound(palabras1)
+        For j = LBound(palabras2) To UBound(palabras2)
+            If StrComp(palabras1(i), palabras2(j), vbTextCompare) = 0 Then
+                contador = contador + 1
+                Exit For
+            End If
+        Next j
+    Next i
+    
+    CompararCadenas = contador / ((UBound(palabras1) + 1 + UBound(palabras2) + 1) / 2)
+End Function
