@@ -1,0 +1,43 @@
+Sub ExportarHojas()
+
+    Dim CarpetaDestino As String
+    Dim LibroOrigen As Workbook
+    Dim Hoja As Worksheet
+    Dim NombreArchivo As String
+    
+    ' Definir la carpeta donde se guardarán los archivos exportados
+    CarpetaDestino = "C:\Archivos Exportados\"
+    
+    ' Desactivar actualizaciones de pantalla
+    Application.ScreenUpdating = False
+    
+    ' Abrir el libro de origen
+    Set LibroOrigen = ThisWorkbook
+    
+    ' Recorrer todas las hojas del libro de origen
+    For Each Hoja In LibroOrigen.Worksheets
+        
+        ' Crear un nuevo libro para la hoja actual
+        Workbooks.Add
+        
+        ' Copiar la hoja actual al nuevo libro
+        Hoja.Copy Before:=ActiveWorkbook.Sheets(1)
+        
+        ' Establecer el nombre del archivo exportado
+        NombreArchivo = Hoja.Name & ".xlsx"
+        
+        ' Guardar el nuevo libro en la carpeta de destino
+        ActiveWorkbook.SaveAs Filename:=CarpetaDestino & NombreArchivo, FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False
+        
+        ' Cerrar el nuevo libro
+        ActiveWorkbook.Close SaveChanges:=False
+    
+    Next Hoja
+    
+    ' Activar actualizaciones de pantalla
+    Application.ScreenUpdating = True
+    
+    ' Mostrar mensaje de finalización
+    MsgBox "Exportación completa."
+    
+End Sub
